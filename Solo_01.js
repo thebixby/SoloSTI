@@ -1,4 +1,8 @@
 function Employee(name, id, salary, rating) {
+	// look this up later
+	// if (salary == null || isNaN(salary)) {
+	// throw Error('this is fucked mang');
+	// }
 	this.name = name;
 	this.id = id;
 	this.salary = salary;
@@ -6,35 +10,34 @@ function Employee(name, id, salary, rating) {
 
 }
 
-var atticus = new Employee("Atticus", "2405", "47000", 3);
-var jem = new Employee("Jem", "62347", "63500", 4);
-var boo = new Employee("Boo", "11435", "54000", 3);
-var scout = new Employee("Scout", "6243", "74750", 5);
+var atticus = new Employee("Atticus", "2405", 47000, 3);
+var jem = new Employee("Jem", "62347", 63500, 4);
+var boo = new Employee("Boo", "11435", 54000, 3);
+var scout = new Employee("Scout", "6243", 74750, 5);
 
 
-var employees = [];
-employees.push(atticus);
-employees.push(jem);
-employees.push(boo);
-employees.push(scout);
+var employees = [atticus, jem, boo, scout];
+// employees.push(atticus);
+// employees.push(jem);
+// employees.push(boo);
+// employees.push(scout);
 
 
 function reward(Employee) {
-	var sti = 0
-	var totalBonus = 0
-	var id = Employee.id
+	var sti = 0;
+	var id = Employee.id;
 	var rating = Employee.rating;
 	var longTerm = id.length;
 	var salary = parseInt(Employee.salary);
 
 	if (rating === 3) {
-		sti = 4
+		sti = 4;
 	} else if (rating === 4) {
-		sti = 6
+		sti = 6;
 	} else if (rating === 5) {
-		sti = 10
+		sti = 10;
 	} else if (rating <= 2) {
-		sti = 0
+		sti = 0;
 	}
 	console.log(salary);
 	if (longTerm >= 4) {
@@ -48,8 +51,10 @@ function reward(Employee) {
 	if (sti >= 13) {
 		sti = 13;
 	}
+	var compensation = Math.ceil(salary + sti * salary / 100);
+	var totalBonus = Math.ceil(sti * salary / 100);
 
-	return [Employee.name, sti, Math.ceil(salary + sti * salary / 100), Math.ceil(sti * salary / 100)];
+	return [Employee.name, sti, totalBonus, compensation];
 }
 
 for (var i = 0; i < employees.length; i++) {
