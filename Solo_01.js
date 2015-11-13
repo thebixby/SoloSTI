@@ -53,7 +53,7 @@ function reward(Employee) {
 }
 
 for (var i = 0; i < employees.length; i++) {
-	console.log(employees[i]);
+	console.log(reward(employees[i]));
 }
 
 
